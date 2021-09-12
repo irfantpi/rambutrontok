@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#4287f5">
+        <TextView
+            android:id="@+id/nama_penyakit_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nama Penyakit"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:gravity="center_horizontal"
+            android:padding="10dp"
+            />
+    </LinearLayout>
+
+</LinearLayout>
