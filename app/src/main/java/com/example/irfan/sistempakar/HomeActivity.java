@@ -10,6 +10,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.irfan.sistempakar.activity_diagnosa.DiagnosaActivity;
+
 public class HomeActivity extends AppCompatActivity {
 
     private LinearLayout menuDiagnosa, menuHistory, menuPengenalan, menuTentang;
@@ -29,6 +31,8 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(HomeActivity.this, "Diagnosa Menu", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), DiagnosaActivity.class);
+                startActivity(intent);
             }
         });
 

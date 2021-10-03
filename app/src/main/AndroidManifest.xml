@@ -9,19 +9,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SistemPakarRambutRontok">
+        <activity android:name=".activity_diagnosa.DiagnosaActivity" android:theme="@style/Theme.SistemPakarRambutRontok.DiagnosaTheme"></activity>
+        <activity
+            android:name=".DetailPenyakit"
+            android:theme="@style/Theme.SistemPakarRambutRontok.PengenalanPenyakitTheme" />
         <activity
             android:name=".PengenalanPenyakit"
-            android:theme="@style/Theme.SistemPakarRambutRontok.PengenalanPenyakitTheme"
-            />
-        <activity android:name=".HomeActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:theme="@style/Theme.SistemPakarRambutRontok.PengenalanPenyakitTheme" />
+        <activity
+            android:name=".HomeActivity"
+            android:theme="@style/Theme.SistemPakarRambutRontok.HomeTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

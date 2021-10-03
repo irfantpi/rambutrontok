@@ -14,6 +14,7 @@ import androidx.annotation.RequiresApi;
 
 import com.example.irfan.sistempakar.model.Gejala;
 import com.example.irfan.sistempakar.model.Penyakit;
+import com.example.irfan.sistempakar.model.Solusi;
 
 import java.util.ArrayList;
 
@@ -53,7 +54,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public void createTablePenyakit(SQLiteDatabase dbPenyakit)
     {
         dbPenyakit.execSQL("DROP TABLE IF EXISTS tbl_penyakit");
-        dbPenyakit.execSQL("CREATE TABLE if not exists tbl_penyakit (id_penyakit INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, kode_penyakit TEXT, nama_penyakit TEXT)");
+        dbPenyakit.execSQL("CREATE TABLE if not exists tbl_penyakit (id_penyakit INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, kode_penyakit TEXT, nama_penyakit TEXT, definisi_penyakit TEXT, image_penyakit TEXT)");
     }
 
     //handle create table solusi
@@ -91,11 +92,11 @@ public class DBHelper extends SQLiteOpenHelper {
     //handle isi table penyakit
     public void isiTablePenyakit(SQLiteDatabase dbPenyakit)
     {
-        dbPenyakit.execSQL("INSERT INTO tbl_penyakit ('kode_penyakit', 'nama_penyakit') VALUES ('P01', 'alopecia areata');");
-        dbPenyakit.execSQL("INSERT INTO tbl_penyakit ('kode_penyakit', 'nama_penyakit') VALUES ('P02', 'alopecia traksi');");
-        dbPenyakit.execSQL("INSERT INTO tbl_penyakit ('kode_penyakit', 'nama_penyakit') VALUES ('P03', 'telogen effluvium');");
-        dbPenyakit.execSQL("INSERT INTO tbl_penyakit ('kode_penyakit', 'nama_penyakit') VALUES ('P04', 'tinea capitis');");
-        dbPenyakit.execSQL("INSERT INTO tbl_penyakit ('kode_penyakit', 'nama_penyakit') VALUES ('P05', 'trikotilomania');");
+        dbPenyakit.execSQL("INSERT INTO tbl_penyakit ('kode_penyakit', 'nama_penyakit', 'definisi_penyakit', 'image_penyakit') VALUES ('P01', 'alopecia areata', 'Alopecia areata adalah kebotakan atau kerontokan rambut yang disebabkan oleh penyakit autoimun. Pada alopecia areata, sistem imun menyerang dan merusak folikel rambut, sehingga menyebabkan kerontokan dan kebotakan. Kulit kepala botak dengan bentuk pitak adalah salah satu tanda dari kondisi ini.', 'alopecia_areata');");
+        dbPenyakit.execSQL("INSERT INTO tbl_penyakit ('kode_penyakit', 'nama_penyakit', 'definisi_penyakit', 'image_penyakit') VALUES ('P02', 'alopecia traksi', 'Alopecia traksi adalah kerontokan rambut yang disebabkan oleh penarikan berulang yang sama, sering, dan berlangsung dalam waktu yang lama. Hal ini terjadi biasanya saat Anda sering mengikat rambut dengan kucir yang terlalu kencang atau mengepangnya. Tarikan yang terlalu kuat dan berulang dapat merusak folikel dan menarik rambut keluar dari kulit kepala. Akibatnya, rambut mengalami kerontokan.', 'alopecia_traksi');");
+        dbPenyakit.execSQL("INSERT INTO tbl_penyakit ('kode_penyakit', 'nama_penyakit', 'definisi_penyakit', 'image_penyakit') VALUES ('P03', 'telogen effluvium', 'Telogen effluvium (TE) adalah kondisi ketika rambut mengalami rambut rontok secara mendadak. Masalah kerontokan ini biasanya bersifat sementara, alias tidak permanen. Kondisi ini biasanya terjadi ketika ada perubahan jumlah folikel rambut yang menumbuhkan rambut.', 'telogen_effluvium');");
+        dbPenyakit.execSQL("INSERT INTO tbl_penyakit ('kode_penyakit', 'nama_penyakit', 'definisi_penyakit', 'image_penyakit') VALUES ('P04', 'tinea capitis', 'Tinea capitis adalah penyakit yang disebabkan oleh infeksi jamur dermatofit pada kulit kepala dan batang rambut. Penyakit ini lebih banyak dialami oleh anak-anak, terutama anak laki-laki usia 3-7 tahun. Tinea capitis sangat mudah menyebar melalui perantara benda yang sudah terpapar jamur dermatofit, atau kontak langsung dengan binatang atau orang yang terinfeksi.', 'tinea_capitis');");
+        dbPenyakit.execSQL("INSERT INTO tbl_penyakit ('kode_penyakit', 'nama_penyakit', 'definisi_penyakit', 'image_penyakit') VALUES ('P05', 'trikotilomania', 'Trikotilomania adalah gangguan mental yang membuat penderitanya memiliki dorongan tidak tertahankan untuk mencabuti rambut di kepalanya. Penderita trikotilomania juga memiliki keinginan untuk mencabuti rambut di bagian tubuh lain, seperti alis dan bulu mata.', 'trikotilomania');");
 
     }
 
@@ -161,7 +162,9 @@ public class DBHelper extends SQLiteOpenHelper {
                 Penyakit modelHasil = new Penyakit(
                         Integer.parseInt(cursor.getString(0)),
                         cursor.getString(1),
-                        cursor.getString(2)
+                        cursor.getString(2),
+                        cursor.getString(3),
+                        cursor.getString(4)
                 );
                 hasilList.add(modelHasil);
             } while (cursor.moveToNext());
@@ -169,6 +172,67 @@ public class DBHelper extends SQLiteOpenHelper {
         return hasilList;
     }
 
+    public Penyakit getRecordPenyakit(int idPenyakit) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query("tbl_penyakit", new String[] {"id_penyakit", "kode_penyakit", "nama_penyakit","definisi_penyakit","image_penyakit"}, "id_penyakit" + "=?",
+                new String[] { String.valueOf(idPenyakit) }, null, null, null, null);
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        Penyakit penyakit = new Penyakit(
+                Integer.parseInt(cursor.getString(0)),
+                cursor.getString(1),
+                cursor.getString(2),
+                cursor.getString(3),
+                cursor.getString(4)
+        );
+        // return contact
+        return penyakit;
+    }
+
+     public ArrayList<Gejala> getGejala(int idGejala) {
+            ArrayList<Gejala> hasilList = new ArrayList<>();
+            // Select All Query
+            String selectQuery = "SELECT  * FROM tbl_gejala where penyakit_id = "+idGejala;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                Gejala modelHasil = new Gejala(
+                        Integer.parseInt(cursor.getString(0)),
+                        Integer.parseInt(cursor.getString(1)),
+                        cursor.getString(2),
+                        cursor.getString(3)
+                );
+                hasilList.add(modelHasil);
+            } while (cursor.moveToNext());
+        }
+        return hasilList;
+    }
+
+    public ArrayList<Solusi> getSolusi(int idGejala) {
+        ArrayList<Solusi> hasilList = new ArrayList<>();
+        // Select All Query
+        String selectQuery = "SELECT  * FROM tbl_solusi where penyakit_id = "+idGejala;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                Solusi modelHasil = new Solusi(
+                        Integer.parseInt(cursor.getString(0)),
+                        Integer.parseInt(cursor.getString(1)),
+                        cursor.getString(2)
+                );
+                hasilList.add(modelHasil);
+            } while (cursor.moveToNext());
+        }
+        return hasilList;
+    }
 
     //MENGHAPUS TABLE
     private static final String SCRIPT_DELETE_TABLE="DROP TABLE IF EXISTS " + DATABASE_NAME;

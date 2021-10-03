@@ -40,6 +40,7 @@
                     android:textAlignment="center"
                     android:gravity="center_horizontal"
                     android:layout_marginTop="10dp"
+                    android:fontFamily="@font/nexa_bold"
                     />
 
             </LinearLayout>
@@ -66,6 +67,7 @@
                     android:textAlignment="center"
                     android:gravity="center_horizontal"
                     android:layout_marginTop="10dp"
+                    android:fontFamily="@font/nexa_bold"
                     />
 
             </LinearLayout>
@@ -110,6 +112,7 @@
                     android:textAlignment="center"
                     android:gravity="center_horizontal"
                     android:layout_marginTop="10dp"
+                    android:fontFamily="@font/nexa_bold"
                     />
 
             </LinearLayout>
@@ -137,6 +140,7 @@
                     android:textAlignment="center"
                     android:gravity="center_horizontal"
                     android:layout_marginTop="10dp"
+                    android:fontFamily="@font/nexa_bold"
                     />
 
             </LinearLayout>
