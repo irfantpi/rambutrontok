@@ -1,6 +1,7 @@
 
 package com.example.irfan.sistempakar.helper;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.DatabaseErrorHandler;
@@ -12,9 +13,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
+import com.example.irfan.sistempakar.model.DiagnosaModel;
 import com.example.irfan.sistempakar.model.Gejala;
 import com.example.irfan.sistempakar.model.Penyakit;
 import com.example.irfan.sistempakar.model.Solusi;
+import com.example.irfan.sistempakar.model.User;
 
 import java.util.ArrayList;
 
@@ -34,6 +37,8 @@ public class DBHelper extends SQLiteOpenHelper {
         isiTableGejala(db);
         createTableSolusi(db);
         isiTableSolusi(db);
+        createTableUser(db);
+        createTableDiagnosa(db);
 //        createTableKeputusan(db);
 //        isiTableKeputusan(db);
     }
@@ -42,6 +47,17 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         onCreate(db);
         db.execSQL(SCRIPT_DELETE_TABLE);
+    }
+    //handle create Table User
+    public void createTableUser(SQLiteDatabase db) {
+        db.execSQL("DROP TABLE IF EXISTS tbl_user");
+        db.execSQL("CREATE TABLE if not exists tbl_user (id_user INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, nama_user TEXT, umur_user TEXT, jenis_kelamin TEXT, alamat_user TEXT, notlp_user TEXT);");
+    }
+
+    //handle create table diagnosa
+    public void createTableDiagnosa(SQLiteDatabase db){
+        db.execSQL("DROP TABLE IF EXISTS tbl_diagnosa");
+        db.execSQL("CREATE TABLE if not exists tbl_diagnosa (id_diagnosa INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, penyakit_id INTEGER, user_id INTEGER)");
     }
 
     //handle create Table Gejala
@@ -232,6 +248,155 @@ public class DBHelper extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
         return hasilList;
+    }
+
+    public ArrayList<DiagnosaModel> getAllDiagnosa() {
+        ArrayList<DiagnosaModel> hasilList = new ArrayList<>();
+        // Select All Query
+        String selectQuery = "SELECT  * FROM tbl_diagnosa";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                DiagnosaModel modelHasil = new DiagnosaModel(
+                        Integer.parseInt(cursor.getString(0)),
+                        Integer.parseInt(cursor.getString(1)),
+                        Integer.parseInt(cursor.getString(2))
+                );
+                hasilList.add(modelHasil);
+            } while (cursor.moveToNext());
+        }
+        return hasilList;
+    }
+
+    public DiagnosaModel getDiagnosa() {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT * FROM tbl_diagnosa ORDER BY id_diagnosa DESC LIMIT 1";
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        DiagnosaModel userModels = new DiagnosaModel(
+                Integer.parseInt(cursor.getString(0)),
+                Integer.parseInt(cursor.getString(1)),
+                Integer.parseInt(cursor.getString(2))
+        );
+        // return contact
+        return userModels;
+    }
+
+    public void addRecordUser(User user){
+        SQLiteDatabase db  = getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+
+        values.put("nama_user", user.getNamaUser());
+        values.put("umur_user", user.getUmurUser());
+        values.put("jenis_kelamin", user.getJenisKelaminUser());
+        values.put("alamat_user", user.getAlamat());
+        values.put("notlp_user", user.getNoTelepon());
+
+        db.insert("tbl_user", null, values);
+        db.close();
+    }
+
+    public void addRecordDiagnosa(DiagnosaModel diagnosaModel){
+        SQLiteDatabase db  = getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+
+        values.put("penyakit_id", diagnosaModel.getIdPenyakit());
+        values.put("user_id", diagnosaModel.getIdUser());
+
+        db.insert("tbl_diagnosa", null, values);
+        db.close();
+    }
+
+    public User getLastRecordUser() {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT * FROM tbl_user ORDER BY id_user DESC LIMIT 1";
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        User userModels = new User(
+                Integer.parseInt(cursor.getString(0)),
+                cursor.getString(1),
+                cursor.getString(2),
+                cursor.getString(3),
+                cursor.getString(4),
+                cursor.getString(5)
+        );
+        // return contact
+        return userModels;
+    }
+
+    public User getUser(int idUser) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT * FROM tbl_user where id_user="+idUser;
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        User userModels = new User(
+                Integer.parseInt(cursor.getString(0)),
+                cursor.getString(1),
+                cursor.getString(2),
+                cursor.getString(3),
+                cursor.getString(4),
+                cursor.getString(5)
+        );
+        // return contact
+        return userModels;
+    }
+
+    public ArrayList<DiagnosaModel> getDiagnosaByUser(int idUser) {
+        ArrayList<DiagnosaModel> hasilList = new ArrayList<>();
+        // Select All Query
+        String selectQuery = "SELECT  * FROM tbl_diagnosa where user_id="+idUser;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                DiagnosaModel modelHasil = new DiagnosaModel(
+                        Integer.parseInt(cursor.getString(0)),
+                        Integer.parseInt(cursor.getString(1)),
+                        Integer.parseInt(cursor.getString(2))
+                );
+                hasilList.add(modelHasil);
+            } while (cursor.moveToNext());
+        }
+        return hasilList;
+    }
+
+    public Penyakit getPenyakit(int idPenyakit) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT * FROM tbl_penyakit where id_penyakit="+idPenyakit;
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        Penyakit userModels = new Penyakit(
+                Integer.parseInt(cursor.getString(0)),
+                cursor.getString(1),
+                cursor.getString(2),
+                cursor.getString(3),
+                cursor.getString(4)
+        );
+        // return contact
+        return userModels;
     }
 
     //MENGHAPUS TABLE

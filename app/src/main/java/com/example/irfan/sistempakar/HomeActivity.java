@@ -32,6 +32,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(HomeActivity.this, "Diagnosa Menu", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), DiagnosaActivity.class);
+                intent.putExtra("layout_diagnosa", 1);
                 startActivity(intent);
             }
         });

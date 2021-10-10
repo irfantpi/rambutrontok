@@ -31,7 +31,7 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="colorPrimaryDark">@color/c6</item>
-        <item name="android:statusBarColor" tools:ignore="NewApi">@color/c7</item>
+        <item name="android:statusBarColor" tools:ignore="NewApi">#3a7bd5</item>
     </style>
 
     <style name="Theme.SistemPakarRambutRontok.HomeTheme">
