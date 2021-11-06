@@ -20,6 +20,8 @@
         <item name="colorPrimaryDark">@color/theme</item>
     </style>
 
+
+
     <style name="Theme.SistemPakarRambutRontok.PengenalanPenyakitTheme">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -32,6 +34,19 @@
         <item name="windowNoTitle">true</item>
         <item name="colorPrimaryDark">@color/c6</item>
         <item name="android:statusBarColor" tools:ignore="NewApi">#3a7bd5</item>
+    </style>
+
+    <style name="Theme.SistemPakarRambutRontok.SSTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorPrimaryDark">#5d86de</item>
+        <item name="android:statusBarColor" tools:ignore="NewApi">#5d86de</item>
+    </style>
+
+    <style name="Theme.SistemPakarRambutRontok.HistoryTheme">
+        <item name="colorPrimaryDark">@color/c6</item>
+        <item name="android:statusBarColor" tools:ignore="NewApi">#3a7bd5</item>
+        <item name="colorPrimary">#3a7bd5</item>
     </style>
 
     <style name="Theme.SistemPakarRambutRontok.HomeTheme">

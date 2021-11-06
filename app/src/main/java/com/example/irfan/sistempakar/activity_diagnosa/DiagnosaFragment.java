@@ -49,7 +49,7 @@ public class DiagnosaFragment extends Fragment {
     private ArrayList<Diagnosa> penyakit2 = new ArrayList<Diagnosa>();
     private ArrayList<Diagnosa> penyakit3 = new ArrayList<Diagnosa>();
     private ArrayList<Diagnosa> penyakit4 = new ArrayList<Diagnosa>();
-    private ArrayList<Diagnosa> penyakit5 = new ArrayList<Diagnosa>();
+    private ArrayList<Diagnosa> penyakit5 = new ArrayList<>();
     private ArrayList<Diagnosa> diagnosa = new ArrayList<Diagnosa>();
 
     private int totalPenyakit1=0, totalPenyakit2=0, totalPenyakit3=0, totalPenyakit4=0, totalPenyakit5=0;
@@ -99,13 +99,13 @@ public class DiagnosaFragment extends Fragment {
         btnYa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Diagnosa diagnosadata = new Diagnosa(gejalas.get(noQ-1).getPenyakitId(), gejalas.get(noQ-1).getIdGejala());
+                diagnosa.add(diagnosadata);
                 if(noQ == gejalas.size()){
                     diagnosa(view);
                 }else{
                     tvKuesioner.setText(gejalas.get(noQ).getNamaGejala());
                     tvNo.setText(noQ+1 + " / "+gejalas.size());
-                    Diagnosa diagnosadata = new Diagnosa(gejalas.get(noQ-1).getPenyakitId(), gejalas.get(noQ-1).getIdGejala());
-                    diagnosa.add(diagnosadata);
                     noQ++;
                 }
             }
@@ -163,13 +163,23 @@ public class DiagnosaFragment extends Fragment {
         }
 
         if(totalPenyakit5 == penyakit5.size()){
-            Toast.makeText(view.getContext(), "Anda Terkena Penyakit 5", Toast.LENGTH_SHORT).show();
+            Toast.makeText(view.getContext(), "Anda Terkena Penyakit 5, ", Toast.LENGTH_SHORT).show();
             addRecord(view, 5);
+        }
+
+        if(totalPenyakit1 != penyakit1.size()
+        && totalPenyakit2 != penyakit2.size()
+        && totalPenyakit3 != penyakit3.size()
+        && totalPenyakit4 != penyakit4.size()
+        && totalPenyakit5 != penyakit5.size()
+        ){
+            addRecord(view, 6);
         }
 
         Intent intent = new Intent(view.getContext(), DiagnosaActivity.class);
         intent.putExtra("layout_diagnosa", 3);
         intent.putExtra("id_user_diagnosa", user.getIdUser());
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
 

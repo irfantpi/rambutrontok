@@ -15,6 +15,7 @@ import androidx.annotation.RequiresApi;
 
 import com.example.irfan.sistempakar.model.DiagnosaModel;
 import com.example.irfan.sistempakar.model.Gejala;
+import com.example.irfan.sistempakar.model.History;
 import com.example.irfan.sistempakar.model.Penyakit;
 import com.example.irfan.sistempakar.model.Solusi;
 import com.example.irfan.sistempakar.model.User;
@@ -113,7 +114,7 @@ public class DBHelper extends SQLiteOpenHelper {
         dbPenyakit.execSQL("INSERT INTO tbl_penyakit ('kode_penyakit', 'nama_penyakit', 'definisi_penyakit', 'image_penyakit') VALUES ('P03', 'telogen effluvium', 'Telogen effluvium (TE) adalah kondisi ketika rambut mengalami rambut rontok secara mendadak. Masalah kerontokan ini biasanya bersifat sementara, alias tidak permanen. Kondisi ini biasanya terjadi ketika ada perubahan jumlah folikel rambut yang menumbuhkan rambut.', 'telogen_effluvium');");
         dbPenyakit.execSQL("INSERT INTO tbl_penyakit ('kode_penyakit', 'nama_penyakit', 'definisi_penyakit', 'image_penyakit') VALUES ('P04', 'tinea capitis', 'Tinea capitis adalah penyakit yang disebabkan oleh infeksi jamur dermatofit pada kulit kepala dan batang rambut. Penyakit ini lebih banyak dialami oleh anak-anak, terutama anak laki-laki usia 3-7 tahun. Tinea capitis sangat mudah menyebar melalui perantara benda yang sudah terpapar jamur dermatofit, atau kontak langsung dengan binatang atau orang yang terinfeksi.', 'tinea_capitis');");
         dbPenyakit.execSQL("INSERT INTO tbl_penyakit ('kode_penyakit', 'nama_penyakit', 'definisi_penyakit', 'image_penyakit') VALUES ('P05', 'trikotilomania', 'Trikotilomania adalah gangguan mental yang membuat penderitanya memiliki dorongan tidak tertahankan untuk mencabuti rambut di kepalanya. Penderita trikotilomania juga memiliki keinginan untuk mencabuti rambut di bagian tubuh lain, seperti alis dan bulu mata.', 'trikotilomania');");
-
+        dbPenyakit.execSQL("INSERT INTO tbl_penyakit ('kode_penyakit', 'nama_penyakit', 'definisi_penyakit', 'image_penyakit') VALUES ('P06', 'rambut sehat', 'Rambut Sehat', 'sehat');");
     }
 
     //handle isi solusi
@@ -168,7 +169,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public ArrayList<Penyakit> getAllPenyakit() {
         ArrayList<Penyakit> hasilList = new ArrayList<>();
         // Select All Query
-        String selectQuery = "SELECT  * FROM tbl_penyakit";
+        String selectQuery = "SELECT  * FROM tbl_penyakit where id_penyakit != 6";
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -399,6 +400,39 @@ public class DBHelper extends SQLiteOpenHelper {
         return userModels;
     }
 
+    public ArrayList<History> dataForHistory() {
+        ArrayList<History> hasilList = new ArrayList<>();
+        // Select All Query
+        String selectQuery = "SELECT id_diagnosa, penyakit_id, user_id, nama_penyakit, nama_user, jenis_kelamin FROM tbl_diagnosa INNER JOIN tbl_penyakit ON tbl_penyakit.id_penyakit = tbl_diagnosa.penyakit_id INNER JOIN tbl_user ON tbl_user.id_user = tbl_diagnosa.user_id ";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                History modelHasil = new History(
+                        Integer.parseInt(cursor.getString(0)),
+                        Integer.parseInt(cursor.getString(1)),
+                        Integer.parseInt(cursor.getString(2)),
+                        cursor.getString(3),
+                        cursor.getString(4),
+                        cursor.getString(5)
+                );
+                hasilList.add(modelHasil);
+            } while (cursor.moveToNext());
+        }
+        return hasilList;
+    }
+
+    public void deleteHistory(int idUser) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("tbl_diagnosa", "user_id" + " = ?",
+                new String[] { String.valueOf(idUser) });
+        db.close();
+    }
+
     //MENGHAPUS TABLE
     private static final String SCRIPT_DELETE_TABLE="DROP TABLE IF EXISTS " + DATABASE_NAME;
+
+
 }

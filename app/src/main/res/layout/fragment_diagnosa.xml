@@ -46,7 +46,7 @@
             <TextView
                 android:id="@+id/dg_kuesioner"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="100dp"
                 android:text="Apakah rambut anda botak plontos dan anada tidak percaya diri ? "
                 android:textColor="@color/black"
                 android:textAlignment="center"

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SplashScreen"
+    android:orientation="vertical"
+    android:background="#5d86de">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/category_image"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:scaleType="centerCrop"
+            android:text="DIAGNOSA PENYAKIT RAMBUT RONTOK"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:fontFamily="@font/nexa_bold"
+            android:textSize="30dp"
+            android:padding="30dp"
+            android:gravity="center"/>
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_below="@+id/category_image"
+            android:layout_marginTop="280dp"
+            android:src="@drawable/logoss" />
+
+    </RelativeLayout>
+
+</LinearLayout>

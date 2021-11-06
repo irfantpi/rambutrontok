@@ -9,7 +9,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SistemPakarRambutRontok">
-        <activity android:name=".activity_diagnosa.DiagnosaActivity" android:theme="@style/Theme.SistemPakarRambutRontok.DiagnosaTheme"></activity>
+        <activity android:name=".AboutActivity" android:theme="@style/Theme.SistemPakarRambutRontok.DiagnosaTheme"></activity>
+        <activity
+            android:name=".DetailHistory"
+            android:theme="@style/Theme.SistemPakarRambutRontok.DiagnosaTheme" />
+        <activity
+            android:name=".SplashScreen"
+            android:theme="@style/Theme.SistemPakarRambutRontok.SSTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".HistoryActivity"
+            android:label="History Diagnosa"
+            android:theme="@style/Theme.SistemPakarRambutRontok.HistoryTheme" />
+        <activity
+            android:name=".activity_diagnosa.DiagnosaActivity"
+            android:theme="@style/Theme.SistemPakarRambutRontok.DiagnosaTheme" />
         <activity
             android:name=".DetailPenyakit"
             android:theme="@style/Theme.SistemPakarRambutRontok.PengenalanPenyakitTheme" />
@@ -18,13 +37,7 @@
             android:theme="@style/Theme.SistemPakarRambutRontok.PengenalanPenyakitTheme" />
         <activity
             android:name=".HomeActivity"
-            android:theme="@style/Theme.SistemPakarRambutRontok.HomeTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:theme="@style/Theme.SistemPakarRambutRontok.HomeTheme" />
         <activity android:name=".MainActivity" />
     </application>
 

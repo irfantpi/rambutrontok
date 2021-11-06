@@ -106,6 +106,7 @@ public class DataDiriFragment extends Fragment {
 
                     Intent intent = new Intent(view.getContext(), DiagnosaActivity.class);
                     intent.putExtra("layout_diagnosa", 2);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
 
                 }else {

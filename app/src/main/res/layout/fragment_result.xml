@@ -29,6 +29,7 @@
             />
 
         <ImageView
+            android:id="@+id/r_img_user"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:background="@drawable/boy"

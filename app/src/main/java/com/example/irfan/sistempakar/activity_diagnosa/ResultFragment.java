@@ -1,19 +1,28 @@
 package com.example.irfan.sistempakar.activity_diagnosa;
 
+import android.content.res.Resources;
+import android.graphics.Shader;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.irfan.sistempakar.R;
+import com.example.irfan.sistempakar.adapter.SolusiListAdapter;
 import com.example.irfan.sistempakar.helper.DBHelper;
 import com.example.irfan.sistempakar.model.DiagnosaModel;
 import com.example.irfan.sistempakar.model.Penyakit;
+import com.example.irfan.sistempakar.model.Solusi;
 import com.example.irfan.sistempakar.model.User;
 
 import java.util.ArrayList;
@@ -24,7 +33,6 @@ import java.util.ArrayList;
  * create an instance of this fragment.
  */
 public class ResultFragment extends Fragment {
-
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -39,9 +47,15 @@ public class ResultFragment extends Fragment {
     private DBHelper dbHelper;
 
     private TextView tvNama, tvUmur, tvAlamat, tvNoTlp, tvJk, tvDiagnosa;
+    private RecyclerView rvSolusi;
 
     ArrayList<DiagnosaModel> diagnosaModels = new ArrayList<>();
     Penyakit penyakit;
+    ImageView imageUser;
+
+    ArrayList<Solusi> solusi = new ArrayList<>();
+
+    SolusiListAdapter solusiListAdapter;
 
     public ResultFragment() {
         // Required empty public constructor
@@ -86,6 +100,8 @@ public class ResultFragment extends Fragment {
         tvAlamat = view.findViewById(R.id.r_alamat);
         tvNoTlp = view.findViewById(R.id.r_notelepon);
         tvDiagnosa = view.findViewById(R.id.r_diagnosa);
+        rvSolusi = view.findViewById(R.id.r_solusi);
+        imageUser = view.findViewById(R.id.r_img_user);
 
         idUser = getArguments().getInt("id_user");
 
@@ -98,6 +114,12 @@ public class ResultFragment extends Fragment {
         tvAlamat.setText(user.getAlamat());
         tvNoTlp.setText(user.getNoTelepon());
 
+        if(user.getJenisKelaminUser().toString().equals("Perempuan")){
+            imageUser.setImageDrawable(getResources().getDrawable(R.drawable.girl));
+        }else{
+            imageUser.setImageDrawable(getResources().getDrawable(R.drawable.boy));
+        }
+
         diagnosaModels = dbHelper.getDiagnosaByUser(user.getIdUser());
 
         if(diagnosaModels.size() == 0){
@@ -105,8 +127,30 @@ public class ResultFragment extends Fragment {
         }else if (diagnosaModels.size() == 1){
             penyakit = dbHelper.getPenyakit(diagnosaModels.get(0).getIdPenyakit());
             tvDiagnosa.setText("Anda terkena Penyakit "+penyakit.getNamaPenyakit());
-        }else{
 
+            solusi = dbHelper.getSolusi(diagnosaModels.get(0).getIdPenyakit());
+            solusiListAdapter = new SolusiListAdapter(solusi, view.getContext());
+            rvSolusi.setLayoutManager(new LinearLayoutManager(view.getContext()));
+            rvSolusi.setAdapter(solusiListAdapter);
+        }else{
+            String textDiagnosa = "Anda Terkena Penyakit:";
+            for(int i=0;i<diagnosaModels.size();i++){
+                penyakit = dbHelper.getPenyakit(diagnosaModels.get(i).getIdPenyakit());
+                textDiagnosa = textDiagnosa+"\n"+penyakit.getNamaPenyakit();
+
+                ArrayList<Solusi> dataSolusi = new ArrayList<Solusi>();
+                dataSolusi = dbHelper.getSolusi(diagnosaModels.get(i).getIdPenyakit());
+                if(!solusi.isEmpty()){
+                    solusi.addAll(dataSolusi);
+                }else{
+                    solusi = dataSolusi;
+                }
+            }
+            tvDiagnosa.setText(textDiagnosa);
+
+            solusiListAdapter = new SolusiListAdapter(solusi, view.getContext());
+            rvSolusi.setLayoutManager(new LinearLayoutManager(view.getContext()));
+            rvSolusi.setAdapter(solusiListAdapter);
         }
 
         Toast.makeText(view.getContext(), String.valueOf(idUser), Toast.LENGTH_SHORT).show();

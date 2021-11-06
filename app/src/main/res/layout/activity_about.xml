@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AboutActivity"
+    android:background="@drawable/blue_gradient"
+    >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tentang Aplikasi"
+                android:textAlignment="center"
+                android:gravity="center_horizontal"
+                android:textSize="25dp"
+                android:fontFamily="@font/nexa_bold"
+                android:textColor="@color/white"
+                android:layout_marginBottom="30dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Penerapan Metode Forward Chaining untuk Mendiagnosa Penyakit Rambut Rontok Berbasis Android"
+                android:textAlignment="center"
+                android:gravity="center_horizontal"
+                android:textSize="18dp"
+                android:fontFamily="@font/nexa_bold"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="SKRIPSI"
+                android:textAlignment="center"
+                android:gravity="center_horizontal"
+                android:textSize="22dp"
+                android:fontFamily="@font/nexa_bold"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Aplikasi ini dibuat untuk memenuhi sebagian persyaratan untuk meraih gelar S1 Teknik Informatika di Universitas Pamulanng"
+                android:textAlignment="center"
+                android:gravity="center_horizontal"
+                android:textSize="18dp"
+                android:fontFamily="@font/nexa_bold"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/black"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:src="@drawable/logounpam"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="50dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="IRFAN TRIPUTRA ISYAN"
+                android:textAlignment="center"
+                android:gravity="center_horizontal"
+                android:textSize="18dp"
+                android:fontFamily="@font/nexa_bold"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/black"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="171011402146"
+                android:textAlignment="center"
+                android:gravity="center_horizontal"
+                android:textSize="18dp"
+                android:fontFamily="@font/nexa_bold"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="PROGRAM STUDI TEKNIK INFORMATIKA"
+                android:textAlignment="center"
+                android:gravity="center_horizontal"
+                android:textSize="18dp"
+                android:fontFamily="@font/nexa_bold"
+                android:layout_marginTop="50dp"
+                android:textColor="@color/black"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="FAKULTAS TEKNIK"
+                android:textAlignment="center"
+                android:gravity="center_horizontal"
+                android:textSize="18dp"
+                android:fontFamily="@font/nexa_bold"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/black"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="UNIVERSITAS PAMULANG"
+                android:textAlignment="center"
+                android:gravity="center_horizontal"
+                android:textSize="18dp"
+                android:fontFamily="@font/nexa_bold"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/black"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TANGERANG SELATAN"
+                android:textAlignment="center"
+                android:gravity="center_horizontal"
+                android:textSize="18dp"
+                android:fontFamily="@font/nexa_bold"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/black"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="2021"
+                android:textAlignment="center"
+                android:gravity="center_horizontal"
+                android:textSize="18dp"
+                android:fontFamily="@font/nexa_bold"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/black"
+                />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
