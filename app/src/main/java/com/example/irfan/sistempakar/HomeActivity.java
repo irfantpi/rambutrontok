@@ -58,6 +58,7 @@ public class HomeActivity extends AppCompatActivity {
         menuTentang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(HomeActivity.this, "Tentang Aplikasi Menu", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), AboutActivity.class);
                 startActivity(intent);
             }

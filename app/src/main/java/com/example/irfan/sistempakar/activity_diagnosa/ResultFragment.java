@@ -153,7 +153,7 @@ public class ResultFragment extends Fragment {
             rvSolusi.setAdapter(solusiListAdapter);
         }
 
-        Toast.makeText(view.getContext(), String.valueOf(idUser), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(view.getContext(), String.valueOf(idUser), Toast.LENGTH_SHORT).show();
         return view;
     }
 }

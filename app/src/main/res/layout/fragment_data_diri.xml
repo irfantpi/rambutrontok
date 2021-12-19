@@ -86,7 +86,6 @@
                         android:id="@+id/dd_nama"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Irfan"
                         />
                     <TextView
                         android:layout_width="match_parent"
@@ -101,7 +100,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="number"
-                        android:text="23"
                         />
                     <TextView
                         android:layout_width="match_parent"
@@ -131,7 +129,6 @@
                         android:id="@+id/dd_alamat"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Tangerang Selatan"
                         />
                     <TextView
                         android:layout_width="match_parent"
@@ -146,7 +143,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="phone"
-                        android:text="081234567"
                         />
 
                     <androidx.appcompat.widget.AppCompatButton

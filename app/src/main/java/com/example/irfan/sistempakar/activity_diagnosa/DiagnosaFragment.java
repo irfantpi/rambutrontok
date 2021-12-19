@@ -143,27 +143,27 @@ public class DiagnosaFragment extends Fragment {
         }
 
         if(totalPenyakit1 == penyakit1.size()){
-            Toast.makeText(view.getContext(), "Anda Terkena Penyakit 1", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(view.getContext(), "Anda Terkena Penyakit 1", Toast.LENGTH_SHORT).show();
             addRecord(view, 1);
         }
 
         if(totalPenyakit2 == penyakit2.size()){
-            Toast.makeText(view.getContext(), "Anda Terkena Penyakit 2", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(view.getContext(), "Anda Terkena Penyakit 2", Toast.LENGTH_SHORT).show();
             addRecord(view, 2);
         }
 
         if(totalPenyakit3 == penyakit3.size()){
-            Toast.makeText(view.getContext(), "Anda Terkena Penyakit 3", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(view.getContext(), "Anda Terkena Penyakit 3", Toast.LENGTH_SHORT).show();
             addRecord(view, 3);
         }
 
         if(totalPenyakit4 == penyakit4.size()){
-            Toast.makeText(view.getContext(), "Anda Terkena Penyakit 4", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(view.getContext(), "Anda Terkena Penyakit 4", Toast.LENGTH_SHORT).show();
             addRecord(view, 4);
         }
 
         if(totalPenyakit5 == penyakit5.size()){
-            Toast.makeText(view.getContext(), "Anda Terkena Penyakit 5, ", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(view.getContext(), "Anda Terkena Penyakit 5, ", Toast.LENGTH_SHORT).show();
             addRecord(view, 5);
         }
 

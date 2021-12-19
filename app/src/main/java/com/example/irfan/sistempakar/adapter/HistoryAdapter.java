@@ -79,7 +79,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
         holder.imgDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, String.valueOf(modelHistory.get(position).getIdUser()), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context, String.valueOf(modelHistory.get(position).getIdUser()), Toast.LENGTH_SHORT).show();
                 AlertDialog.Builder builder = new AlertDialog.Builder(v.getRootView().getContext(), R.style.Theme_AppCompat_Dialog_Alert);
 
                 builder.setTitle("Peringatan");
