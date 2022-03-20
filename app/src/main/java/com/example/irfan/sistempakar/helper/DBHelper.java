@@ -293,16 +293,16 @@ public class DBHelper extends SQLiteOpenHelper {
     public void addRecordUser(User user){
         SQLiteDatabase db  = getWritableDatabase();
 
-        ContentValues values = new ContentValues();
+            ContentValues values = new ContentValues();
 
-        values.put("nama_user", user.getNamaUser());
-        values.put("umur_user", user.getUmurUser());
-        values.put("jenis_kelamin", user.getJenisKelaminUser());
-        values.put("alamat_user", user.getAlamat());
-        values.put("notlp_user", user.getNoTelepon());
+            values.put("nama_user", user.getNamaUser());
+            values.put("umur_user", user.getUmurUser());
+            values.put("jenis_kelamin", user.getJenisKelaminUser());
+            values.put("alamat_user", user.getAlamat());
+            values.put("notlp_user", user.getNoTelepon());
 
-        db.insert("tbl_user", null, values);
-        db.close();
+            db.insert("tbl_user", null, values);
+            db.close();
     }
 
     public void addRecordDiagnosa(DiagnosaModel diagnosaModel){
